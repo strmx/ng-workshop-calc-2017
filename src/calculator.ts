@@ -1,30 +1,14 @@
 const VALID_INPUT = '0123456789c/*-+.=';
 
-interface ICalculator {
-  switcher: HTMLElement;
-  keys: NodeListOf<HTMLElement>;
-  display: HTMLElement;
-  inputValues: Array<string>;
+export class Calculator {
 
-  bindListeners(): void;
-  isOn(): boolean;
-  processKeyDown(value: string): void;
-  calculateResult(inputs: Array<string>): string;
-  updateDisplay(text: string): void;
-  clear(): void;
-}
+  constructor(root) {
+    this.inputValues = null;
 
-export class Calculator implements ICalculator {
-  switcher: HTMLElement;
-  keys: NodeListOf<HTMLElement>;
-  display: HTMLElement;
-  inputValues: Array<string> = [];
-
-  constructor(root: Element | null) {
     if (root) {
-      this.switcher = root.querySelector('.switcher') as HTMLElement;
-      this.keys = root.querySelectorAll('.key') as NodeListOf<HTMLElement>;
-      this.display = root.querySelector('.display') as HTMLElement;
+      this.switcher = root.querySelector('.switcher');
+      this.keys = root.querySelectorAll('.key');
+      this.display = root.querySelector('.display');
 
       this.bindListeners();
 
@@ -33,7 +17,7 @@ export class Calculator implements ICalculator {
     }
   }
 
-  bindListeners(): void {
+  bindListeners() {
 
     // on/off
 
@@ -50,26 +34,25 @@ export class Calculator implements ICalculator {
 
     // input
 
-    [].forEach.call(this.keys, (key: HTMLElement) => {
+    [].forEach.call(this.keys, (key) => {
       const value = key.dataset.value;
       if (typeof value !== 'string') throw new Error('no key value');
       key.addEventListener('click', e => this.processKeyDown(value));
     });
 
     window.addEventListener('keydown', e => {
-      const value: string = e.key;
+      const value = e.key;
       if (VALID_INPUT.indexOf(value) >= 0) {
         this.processKeyDown(value);
       }
     });
-
   }
 
-  isOn(): boolean {
+  isOn() {
     return this.switcher && this.switcher.classList.contains('switcher--on');
   }
 
-  processKeyDown(value: string) {
+  processKeyDown(value) {
     if (!this.isOn()) {
       return;
     }
@@ -91,19 +74,19 @@ export class Calculator implements ICalculator {
     }
   }
 
-  calculateResult(inputs: Array<string>): string {
+  calculateResult(inputs) {
     try {
-      return ((window as any).eval as Function)(inputs.join('')) as string;
+      return window.eval(inputs.join(''));
     } catch (err) {}
 
     return 'Error';
   }
 
-  updateDisplay(text: string): void {
+  updateDisplay(text) {
     this.display.innerHTML = text;
   }
 
-  clear(): void {
+  clear() {
     this.inputValues.splice(0, this.inputValues.length);
   }
 }
