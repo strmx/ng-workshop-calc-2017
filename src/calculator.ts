@@ -14,7 +14,7 @@ interface ICalculator {
   clear(): void;
 }
 
-class Calculator implements ICalculator {
+export class Calculator implements ICalculator {
   switcher: HTMLElement;
   keys: NodeListOf<HTMLElement>;
   display: HTMLElement;
@@ -107,5 +107,3 @@ class Calculator implements ICalculator {
     this.inputValues.splice(0, this.inputValues.length);
   }
 }
-
-new Calculator(document.querySelector('.calculator'));
