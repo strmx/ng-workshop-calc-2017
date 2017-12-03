@@ -1,0 +1,120 @@
+html, body {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calculator {
+  width: 50vmin;
+  height: 90vmin;
+  background-color: #ccc;
+  border-radius: 3vmin;
+  background: linear-gradient(to bottom, #eeeeee 0%,#cccccc 100%);
+  box-shadow: 1vmin 1vmin 8px 8px rgba(0, 0, 0, 0.45);
+}
+
+.main-frame {
+  height: 100%;
+  border: 4px solid #eee;
+  border-radius: 3vmin;
+}
+
+.display {
+  overflow: hidden;
+  margin: 6vmin;
+  height: 8vmin;
+  padding: .5vmin 1vmin;
+  box-shadow: inset 0px 0px 1vmin 4px rgba(0,0,0,0.75);
+  background: linear-gradient(to bottom, #959595 0%,#0d0d0d 46%,#010101 50%,#0a0a0a 53%,#4e4e4e 76%,#383838 87%,#1b1b1b 100%);
+  font-family: monospace;
+  font-size: 8vmin;
+  letter-spacing: -1vmin;
+  line-height: 8vmin;
+  text-align: right;
+  color: #80b740;
+}
+
+.extras {
+  margin: 0 6vmin;
+  height: 5vmin;
+  display: flex;
+  justify-content: space-between;
+}
+
+.switcher {
+  flex: 0 0 10vmin;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: inset 0px 0px 1vmin 1px rgba(0,0,0,0.5);
+  background-color: #cccccc;
+  cursor: pointer;
+}
+.switcher--on {
+  justify-content: flex-end;
+}
+.switcher__bar {
+  height: calc(5vmin - 4px);
+  flex: 0 0 4vmin;
+  background-color: #4e4e4e;
+  box-shadow: inset 0px 0px 1vmin 1px rgba(0,0,0,0.75);
+  border: 2px solid #666;
+
+  /*label*/
+  line-height: calc(5vmin - 4px);
+  text-align: center;
+  font-size: 2vmin;
+  font-weight: bold;
+  color: #e7e7e7;
+}
+
+.solar-panel {
+  flex: 0 0 18vmin;
+  border: 1px solid #81826a;
+  background: linear-gradient(to bottom, #bcb693 0%,#b3b599 91%,#7e7f6c 100%);
+}
+
+.keyboard {
+  margin: 4vmin 6vmin 0;
+  display: flex;
+}
+.key {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #eee;
+  background: linear-gradient(to bottom, #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%);
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+.key:hover {
+  background: linear-gradient(to bottom, #fceabb 0%,#fccd4d 50%,#f8b500 51%,#fbdf93 100%);
+}
+.key span {
+  pointer-events: none;
+}
+
+.keyboard.keyboard--control {
+  justify-content: space-between;
+  align-items: center;
+}
+.keyboard.keyboard--control .key{
+  flex: 0 0 6vmin;
+  height: 6vmin;
+  font-size: 3vmin;
+}
+
+.keyboard.keyboard--number {
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.keyboard.keyboard--number .key {
+  flex: 0 0 10vmin;
+  margin-bottom: 2vmin;
+  height: 10vmin;
+  font-size: 5vmin;
+}
